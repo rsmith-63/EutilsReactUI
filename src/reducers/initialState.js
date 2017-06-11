@@ -4,5 +4,8 @@
 
 
 export default  {
-    dbList: []
+    searchForm: {
+        dbList:[],
+        res:{}
+    }
 }

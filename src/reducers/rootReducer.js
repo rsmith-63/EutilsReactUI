@@ -2,10 +2,10 @@
  * Created by rob on 6/11/2017.
  */
 import {combineReducers} from 'redux';
-import dbList from './searchFormReducer';
+import searchForm from './searchFormReducer';
 
 const rootReducer = combineReducers({
-    dbList
+    searchForm
 });
 
 export default rootReducer;

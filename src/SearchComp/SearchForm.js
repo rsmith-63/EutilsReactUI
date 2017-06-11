@@ -35,14 +35,13 @@ class SearchForm extends Component {
         e.preventDefault();
         console.log('input val', this.input.value);
         console.log('sel val', this.select.value);
-        // ncbiResources.getQueryResults(this.select.value,this.input.value).then(data => (
-        //     this.setState({results: data})
-        // ) );
-       // console.log('res', this.state.results);
+        this.props.searchActions.fetchDbQuery();
+
     }
 
     render() {
         console.log(this.props);
+        console.log(this.props.searchForm.res);
         return (
             <div className="SearchForm">
                 <div className="container">
@@ -55,7 +54,7 @@ class SearchForm extends Component {
                                     <div className="col-lg-3 col-md-4 col-xs-4" >
                                         <div className="col-lg-3 col-md-4 col-xs-4" >
                                             <select  className="form-control" ref={(select) => this.select = select}>
-                                                { this.props.dbList.length > 0 ? this.renderOptions(this.props.dbList) : null}
+                                                { this.props.searchForm.dbList.length > 0 ? this.renderOptions(this.props.searchForm.dbList) : null}
                                             </select>
                                         </div>
                                     </div>
@@ -84,12 +83,12 @@ class SearchForm extends Component {
 
 SearchForm.propTypes = {
     searchActions: PropTypes.object,
-    dbList: PropTypes.array
+    searchForm: PropTypes.object
 };
 
 function mapStateToProps(state) {
     return {
-        dbList: state.dbList
+        searchForm: state.searchForm
     };
 }
 
