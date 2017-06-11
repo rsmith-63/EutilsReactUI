@@ -1,0 +1,38 @@
+body{
+    background-color: #d9edf7;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.row-header {
+    margin: 0px auto;
+    padding: 0px 0px;
+}
+
+legend {
+    padding-top: 1em;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 0;
+    padding-left: 1em;
+}
+
+.form-control {
+    width: auto;
+}
+
+.page-header {
+    text-align: center;
+}
+
+h1 small {
+    color: #333;
+}
+.center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
