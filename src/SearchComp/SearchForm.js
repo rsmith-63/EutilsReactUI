@@ -2,25 +2,28 @@
  * Created by rob on 2/25/2017.
  */
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
+import * as searchActions from '../actions/searchFormActions';
 import ncbiResources from '../Api/ncbiResources';
 
 class SearchForm extends Component {
     constructor(props,context){
         super(props,context);
-        this.state = {
-            dbList:[],
-            results:[]
-        }
+        // this.state = {
+        //     dbList:[],
+        //     results:[]
+        // }
     }
-
+     componentWillMount(){
+         this.props.searchActions.fetchDbList();
+     }
     componentDidMount() {
-        // ncbiResources.getDbList().then(data => {
-        //     const d = data.unshift('all databases');
-        //     return this.setState({dbList: d});
-        // })
-        ncbiResources.getDbList().then(data => (
-            this.setState({dbList: data})
-        ) )
+
+        // ncbiResources.getDbList().then(data => (
+        //     this.setState({dbList: data})
+        // ) )
 
     }
 
@@ -32,13 +35,14 @@ class SearchForm extends Component {
         e.preventDefault();
         console.log('input val', this.input.value);
         console.log('sel val', this.select.value);
-        ncbiResources.getQueryResults(this.select.value,this.input.value).then(data => (
-            this.setState({results: data})
-        ) );
-        console.log('res', this.state.results);
+        // ncbiResources.getQueryResults(this.select.value,this.input.value).then(data => (
+        //     this.setState({results: data})
+        // ) );
+       // console.log('res', this.state.results);
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="SearchForm">
                 <div className="container">
@@ -51,7 +55,7 @@ class SearchForm extends Component {
                                     <div className="col-lg-3 col-md-4 col-xs-4" >
                                         <div className="col-lg-3 col-md-4 col-xs-4" >
                                             <select  className="form-control" ref={(select) => this.select = select}>
-                                                { this.state.dbList.length > 0 ? this.renderOptions(this.state.dbList) : null}
+                                                { this.props.dbList.length > 0 ? this.renderOptions(this.props.dbList) : null}
                                             </select>
                                         </div>
                                     </div>
@@ -75,4 +79,31 @@ class SearchForm extends Component {
     }
 }
 
-export default SearchForm;
+
+
+
+SearchForm.propTypes = {
+    searchActions: PropTypes.object,
+    dbList: PropTypes.array
+};
+
+function mapStateToProps(state) {
+    return {
+        dbList: state.dbList
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        searchActions: bindActionCreators(searchActions, dispatch)
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SearchForm);
+
+
+//export default SearchForm;
+
