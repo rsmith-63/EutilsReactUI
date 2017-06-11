@@ -3,7 +3,7 @@
  */
 import React from 'react';
 
-import ncbi from './ncbi.jpg';
+import ncbi from '../Img/ncbi.jpg';
 const Info = () => (
     <div className="container">
         <div className="row">

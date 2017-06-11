@@ -2,9 +2,9 @@
  * Created by rob on 6/10/2017.
  */
 import React, { Component } from 'react';
-import './App.css';
-import Info from './Info';
-import SearchForm from './SearchForm';
+import '../App/App.css';
+import Info from '../InfoComp/Info';
+import SearchForm from '../SearchComp/SearchForm';
 
 class HomePage extends Component {
     render() {

@@ -2,7 +2,7 @@
  * Created by rob on 2/25/2017.
  */
 import React, { Component } from 'react';
-import ncbiResources from './ncbiResources';
+import ncbiResources from '../Api/ncbiResources';
 
 class SearchForm extends Component {
     constructor(props,context){
